@@ -9,22 +9,32 @@ export default {
 
 } as ComponentMeta<typeof ButtonComponent>;
 
-//export const myButton: ComponentStory<typeof ButtonComponent> = () => <ButtonComponent label={"Coucou"} onClick={() => console.log("Test!")} />
-const Template: ComponentStory<typeof ButtonComponent> = (args) => <ButtonComponent {...args} />;
+//export const myButton: ComponentStory<typeof ButtonComponent> = () => <ButtonComponent label={"Envoie"} type={"submit"} onClick={() => console.log("Test!")} />
+const ButtonTemplate: ComponentStory<typeof ButtonComponent> = (args) => <ButtonComponent {...args} />;
 
-export const Primary = Template.bind({});
-export const Secondary = Template.bind({});
+export const FirstButton = ButtonTemplate.bind({});
+export const SecondButton = ButtonTemplate.bind({});
+export const ThirdButton = ButtonTemplate.bind({});
 
-Primary.args = {
+const handleTest = () => console.log("test");
+
+FirstButton.args = {
 
   label: 'Un test',
-  onClick: () => alert("Test du click!")
+  onClick: () => console.log("Coucou!")
 
 };
 
-Secondary.args = {
+SecondButton.args = {
 
   label: "Coucou",
   onClick: () => console.log("Encore!")
 
 };
+
+ThirdButton.args = {
+
+  label: "Calcul",
+  onClick: handleTest
+
+}

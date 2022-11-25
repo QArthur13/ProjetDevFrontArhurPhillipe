@@ -9,4 +9,15 @@ export default {
 
 } as ComponentMeta<typeof RadioComponent>;
 
-export const myRadio: ComponentStory<typeof RadioComponent> = () => <RadioComponent />;
+const TemplateRadioComponent: ComponentStory<typeof RadioComponent> = (args) => <RadioComponent {...args} />;
+
+export const myRadio = TemplateRadioComponent.bind({});
+
+myRadio.args = {
+
+  id1: "entrepreneur",
+  value1: "entrepreneur",
+  id2: "particulier",
+  value2: "particulier"
+
+}
