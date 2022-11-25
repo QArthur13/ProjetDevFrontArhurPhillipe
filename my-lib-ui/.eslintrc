@@ -1,5 +1,5 @@
 {
-  "parser": "@typescript-eslint/parser",
+  /*"parser": "@typescript-eslint/parser",
   "extends": [
     "standard",
     "standard-react",
@@ -30,5 +30,5 @@
     "react/jsx-fragments": 0,
     "react/no-unused-prop-types": 0,
     "import/export": 0
-  }
+  }*/
 }
