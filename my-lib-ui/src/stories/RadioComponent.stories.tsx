@@ -15,8 +15,8 @@ export const myRadio = TemplateRadioComponent.bind({});
 
 myRadio.args = {
 
-  id1: "entrepreneur",
-  value1: "entrepreneur",
+  id1: "entreprise",
+  value1: "entreprise",
   id2: "particulier",
   value2: "particulier"
 

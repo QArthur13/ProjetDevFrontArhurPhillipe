@@ -9,4 +9,4 @@ export default {
 
 } as ComponentMeta<typeof CheckboxComponent>;
 
-export const myCheckbox: ComponentStory<typeof CheckboxComponent> = () => <CheckboxComponent></CheckboxComponent>
+export const myCheckbox: ComponentStory<typeof CheckboxComponent> = (args) => <CheckboxComponent {...args}/>

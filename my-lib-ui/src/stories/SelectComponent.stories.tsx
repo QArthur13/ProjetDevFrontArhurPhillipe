@@ -9,7 +9,16 @@ export default {
 
 } as ComponentMeta<typeof SelectComponent>;
 
-export const mySelect: ComponentStory<typeof SelectComponent> = () => <SelectComponent></SelectComponent>;
+//export const mySelect: ComponentStory<typeof SelectComponent> = () => <SelectComponent></SelectComponent>;
+const TemplateSelectComponent: ComponentStory<typeof SelectComponent> = (args) => <SelectComponent {...args}/>
+
+export const Primary = TemplateSelectComponent.bind({});
+
+Primary.args = {
+
+  options: ["France", "Allemagne", "Italie", "Espagne", "Belgique", "Luxembourg", "Suisse", "Angleterre"]
+
+};
 
 /*export const mySelect: ComponentStory<typeof SelectComponent> = () => (
 

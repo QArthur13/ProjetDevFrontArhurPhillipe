@@ -24,7 +24,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
 
   return (
 
-    <button type={type ? type : "button"} onClick={handleTest}>{label ? label : "bouton"}</button>
+    <button className={"my-button"} type={type} onClick={handleTest}>{label ? label : "bouton"}</button>
 
   );
 

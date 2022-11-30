@@ -17,24 +17,29 @@ export const SecondButton = ButtonTemplate.bind({});
 export const ThirdButton = ButtonTemplate.bind({});
 
 const handleTest = () => console.log("test");
+const handleTest2 = () => console.log("Coucou!");
+const handleTest3 = () => console.log("Encore");
 
 FirstButton.args = {
 
   label: 'Un test',
-  onClick: () => console.log("Coucou!")
+  type: 'button',
+  onClick: handleTest2
 
 };
 
 SecondButton.args = {
 
   label: "Coucou",
-  onClick: () => console.log("Encore!")
+  type: 'button',
+  onClick: handleTest3
 
 };
 
 ThirdButton.args = {
 
   label: "Calcul",
+  type: 'button',
   onClick: handleTest
 
-}
+};
