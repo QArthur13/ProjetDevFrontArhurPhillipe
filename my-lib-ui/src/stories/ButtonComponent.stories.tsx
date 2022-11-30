@@ -10,7 +10,8 @@ export default {
 } as ComponentMeta<typeof ButtonComponent>;
 
 //export const myButton: ComponentStory<typeof ButtonComponent> = () => <ButtonComponent label={"Envoie"} type={"submit"} onClick={() => console.log("Test!")} />
-const ButtonTemplate: ComponentStory<typeof ButtonComponent> = (args) => <ButtonComponent {...args} />;
+export const ButtonView: ComponentStory<typeof ButtonComponent> = (args) => <ButtonComponent {...args} />;
+/*const ButtonTemplate: ComponentStory<typeof ButtonComponent> = (args) => <ButtonComponent {...args} />;
 
 export const FirstButton = ButtonTemplate.bind({});
 export const SecondButton = ButtonTemplate.bind({});
@@ -42,4 +43,4 @@ ThirdButton.args = {
   type: 'button',
   onClick: handleTest
 
-};
+};*/
