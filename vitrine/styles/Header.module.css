@@ -1,14 +1,7 @@
 .mainHeader {
 
     display: flex;
-    flex-direction: row;
-
-}
-
-.mainHeader h1 {
-
-    font-family: 'Bayon', serif;
-    font-style: normal;
-    font-weight: 400;
+    align-items: center;
+    margin-left: 5px;
 
 }

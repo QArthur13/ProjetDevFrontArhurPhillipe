@@ -9,10 +9,10 @@ const Home: NextPage = () => {
   return (
 
       <div>
-        <HeadComponent/>
-        <HeaderComponent/>
-        <MainComponent/>
-        <FooterComponent/>
+          <HeadComponent/>
+          <HeaderComponent/>
+          <MainComponent/>
+          <FooterComponent/>
       </div>
 
   );
