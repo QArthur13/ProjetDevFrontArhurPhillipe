@@ -4,7 +4,7 @@ interface InputComponentProps {
 
   label: string,
   htmlFor: string
-  type: "text" | "email" | "tel",
+  type: "text" | "email" | "tel" | "password",
 
 }
 
@@ -16,7 +16,7 @@ const InputComponent: React.FC<InputComponentProps> = (props) => {
 
   return (
 
-    <div>
+    <div className={"test"}>
       <label htmlFor={htmlFor}>{label}:</label>
       <input type={type} id={htmlFor} name={htmlFor} value={value} onChange={handleChange}/>
     </div>

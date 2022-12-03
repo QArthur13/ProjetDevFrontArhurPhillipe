@@ -1,3 +1,6 @@
 import React from "react";
-declare const CheckboxComponent: React.FC;
+interface CheckboxComponentProps {
+    htmlFor: string;
+}
+declare const CheckboxComponent: React.FC<CheckboxComponentProps>;
 export default CheckboxComponent;

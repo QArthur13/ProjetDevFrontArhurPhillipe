@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "my-lib-ui": {
-      "signature": "796cfd67282a6ae1741fda92d4514f7b",
+      "signature": "a7bc49723865e668063747db868c0e94",
       "file": true
     }
   }

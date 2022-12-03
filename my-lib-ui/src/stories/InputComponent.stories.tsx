@@ -1,6 +1,7 @@
 import React from "react";
 import InputComponent from "./InputComponent";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
+import "../styles/input.css";
 
 export default {
 
@@ -9,12 +10,13 @@ export default {
 
 } as ComponentMeta<typeof InputComponent>;
 
-const TemplateInput: ComponentStory<typeof InputComponent> = (args) => <InputComponent {...args}/>;
+const InputTemplate: ComponentStory<typeof InputComponent> = (args) => <InputComponent {...args}/>;
 
-export const FirstInput = TemplateInput.bind({});
-export const SecondInput = TemplateInput.bind({});
-export const ThirdInput = TemplateInput.bind({});
-export const FourthInput = TemplateInput.bind({});
+export const FirstInput = InputTemplate.bind({});
+export const SecondInput = InputTemplate.bind({});
+export const ThirdInput = InputTemplate.bind({});
+export const FourthInput = InputTemplate.bind({});
+export const FifthInput = InputTemplate.bind({});
 
 FirstInput.args = {
 
@@ -47,3 +49,11 @@ FourthInput.args = {
   type: "tel"
 
 };
+
+FifthInput.args = {
+
+  label: "Mot de passe",
+  htmlFor: "password",
+  type: "password"
+
+}

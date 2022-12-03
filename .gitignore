@@ -1,0 +1,4 @@
+.idea
+./.idea
+Dockerfile
+docker-compose.yaml

@@ -16,6 +16,7 @@ export const Primary = TemplateSelectComponent.bind({});
 
 Primary.args = {
 
+  htmlFor: "country",
   options: ["France", "Allemagne", "Italie", "Espagne", "Belgique", "Luxembourg", "Suisse", "Angleterre"]
 
 };

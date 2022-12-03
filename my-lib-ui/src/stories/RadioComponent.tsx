@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "../styles/radio.css";
 
 interface RadioComponentProps {
 
@@ -24,14 +25,14 @@ const RadioComponent: React.FC<RadioComponentProps> = (props) => {
         setValue(event.target.value);
 
       }}/>
-      <label htmlFor={value1}>Je suis une {value1}</label>
+      <label htmlFor={value1}>une {value1}</label>
       <input type="radio" id={id2} name={"choice"} value={value2} checked={value === value2} onChange={(event) => {
 
         console.log(event.target.value);
         setValue(event.target.value);
 
       }}/>
-      <label htmlFor={value2}>Je suis un {value2}</label>
+      <label htmlFor={value2}>un {value2}</label>
     </div>
 
   );

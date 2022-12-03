@@ -23,7 +23,7 @@ var RadioComponent = function RadioComponent(props) {
     }
   }), React__default.createElement("label", {
     htmlFor: value1
-  }, "Je suis une ", value1), React__default.createElement("input", {
+  }, "une ", value1), React__default.createElement("input", {
     type: "radio",
     id: id2,
     name: "choice",
@@ -35,7 +35,7 @@ var RadioComponent = function RadioComponent(props) {
     }
   }), React__default.createElement("label", {
     htmlFor: value2
-  }, "Je suis un ", value2));
+  }, "un ", value2));
 };
 
 var InputComponent = function InputComponent(props) {
@@ -48,7 +48,9 @@ var InputComponent = function InputComponent(props) {
   var handleChange = function handleChange(e) {
     return setValue(e.target.value);
   };
-  return React__default.createElement("div", null, React__default.createElement("label", {
+  return React__default.createElement("div", {
+    className: "test"
+  }, React__default.createElement("label", {
     htmlFor: htmlFor
   }, label, ":"), React__default.createElement("input", {
     type: type,
@@ -60,15 +62,16 @@ var InputComponent = function InputComponent(props) {
 };
 
 var SelectComponent = function SelectComponent(props) {
-  var options = props.options;
+  var htmlFor = props.htmlFor,
+    options = props.options;
   var _useState = React.useState(""),
     value = _useState[0],
     setValue = _useState[1];
   return React__default.createElement("div", null, React__default.createElement("label", {
-    htmlFor: "country"
+    htmlFor: htmlFor
   }, "Nationalit\xE9:"), React__default.createElement("select", {
     name: "country",
-    id: "country",
+    id: htmlFor,
     value: value,
     onChange: function onChange(event) {
       setValue(event.target.value);
@@ -84,21 +87,22 @@ var SelectComponent = function SelectComponent(props) {
   })));
 };
 
-var CheckboxComponent = function CheckboxComponent() {
+var CheckboxComponent = function CheckboxComponent(props) {
+  var htmlFor = props.htmlFor;
   var _useState = React.useState(false),
     value = _useState[0],
     setValue = _useState[1];
   return React__default.createElement("div", null, React__default.createElement("input", {
     type: "checkbox",
-    id: "agree",
-    name: "agree",
+    id: htmlFor,
+    name: htmlFor,
     checked: value,
     onChange: function onChange(event) {
       return setValue(event.target.checked);
     }
   }), React__default.createElement("label", {
-    htmlFor: "agree"
-  }, "Accepter les conditions: "));
+    htmlFor: htmlFor
+  }, "J\u2019atteste que je poss\xE8de un permis de conduire valide."));
 };
 
 var ButtonComponent = function ButtonComponent(props) {
@@ -114,7 +118,7 @@ var ButtonComponent = function ButtonComponent(props) {
     className: "my-button",
     type: type,
     onClick: handleTest
-  }, label ? label : "bouton");
+  }, label);
 };
 
 exports.ButtonComponent = ButtonComponent;

@@ -1,0 +1,14 @@
+button {
+
+  padding: 12px 16px;
+  gap: 8px;
+  background-color: #C00000;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  border-color: #C00000;
+
+}

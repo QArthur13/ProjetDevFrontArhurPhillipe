@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/radio.css";
 interface RadioComponentProps {
     id1: string;
     value1: string;

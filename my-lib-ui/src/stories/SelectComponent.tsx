@@ -2,20 +2,21 @@ import React, {useState} from "react";
 
 interface SelectComponentProps {
 
+  htmlFor: string,
   options: string[]
 
 }
 
 const SelectComponent: React.FC<SelectComponentProps> = (props) => {
 
-  const { options } = props;
+  const { htmlFor, options } = props;
   const [value, setValue] = useState<string>("");
 
   return (
 
     <div>
-      <label htmlFor="country">Nationalité:</label>
-      <select name="country" id="country" value={value} onChange={(event) => {
+      <label htmlFor={htmlFor}>Nationalité:</label>
+      <select name="country" id={htmlFor} value={value} onChange={(event) => {
 
         setValue(event.target.value)
         console.log(event.target.value)
