@@ -1,5 +1,216 @@
-header {
+.mainHeader {
 
     position: absolute;
+    width: 1440px;
+    height: 72px;
+    left: 0;
+    top: 0;
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.5));
+    background-color: white;
+
+}
+
+.logoAndName {
+
+    position: absolute;
+    width: 144px;
+    left: 3px;
+    top: 1.39%;
+    bottom: 0;
+
+}
+
+.logoAndName svg {
+
+    position: absolute;
+    left: 0;
+    right: 54.17%;
+    top: 2.82%;
+    bottom: 4.23%;
+
+}
+
+.logoAndName h1 {
+
+    position: absolute;
+    left: 56.25%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-top: 0;
+    font-family: 'Bayon', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 39px;
+    line-height: 71px;
+    color: black;
+
+}
+
+.theButton {
+
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    width: 150px;
+    right: 9px;
+    top: 16.67%;
+    bottom: 22.22%;
+
+}
+
+.mainPage {
+
+    position: absolute;
+    width: 1440px;
+    height: 424px;
+    left: 0;
+    top: 72px;
+    background-image: url("../public/image/image 2.png");
+
+}
+
+.mainPageBoxAbout {
+
+    position: absolute;
+    width: 796px;
+    height: 104px;
+    left: 322px;
+    top: 319px;
+    background-color: white;
+    border-bottom: 1px solid #C00000;
+
+}
+
+.mainPageBoxAbout p {
+
+    position: absolute;
+    width: 710px;
+    height: 72px;
+    margin-left: 42px;
+    font-family: 'Abel', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+
+}
+
+.mainPageH {
+
+    position: absolute;
+    width: 139px;
+    height: 25px;
+    left: 365px;
+    top: 528px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 25px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #C00000;
+
+}
+
+.mainPageForm {
+
+    position: absolute;
+    width: 710px;
+    height: 443px;
+    left: 365px;
+    top: 561px;
+
+}
+
+.mainFooter {
+
+    position: absolute;
+    width: 1440px;
+    height: 144px;
+    left: 0;
+    top: 1084px;
+    background-color: black;
+
+}
+
+.mainFooter p:first-child {
+
+    position: absolute;
+    height: 14px;
+    left: 5.14%;
+    right: 42.93%;
+    top: 24px;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    text-decoration-line: underline;
+    color: white;
+
+}
+
+.mainFooter p:nth-child(2) {
+
+    position: absolute;
+    height: 14px;
+    left: 5.14%;
+    right: 42.93%;
+    top: 62px;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    text-decoration-line: underline;
+    color: white;
+
+}
+
+.mainFooter p:last-child {
+
+    position: absolute;
+    height: 16px;
+    left: 5.14%;
+    right: 5.14%;
+    bottom: 20px;
+    font-family: 'Abel Pro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    color: white;
+
+}
+
+.loginPageBack {
+
+    position: absolute;
+    width: 74px;
+    height: 20px;
+    left: 552px;
+    top: 160px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+
+}
+
+.loginForm {
+
+    position: absolute;
+    width: 358px;
+    height: 317px;
+    left: 543px;
+    top: 196px;
 
 }

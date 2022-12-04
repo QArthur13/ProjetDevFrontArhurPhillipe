@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import {ButtonComponent, CheckboxComponent, InputComponent, RadioComponent, SelectComponent} from "my-lib-ui";
 import styles from "../styles/Index.module.css";
 
@@ -13,21 +12,24 @@ const MainComponent: React.FC = () => {
 
     return (
 
-        <main className={styles.mainStyles}>
-            <Image src={"/image/image 2.jpg"} width={1519} height={424} alt={"Car"}></Image>
-            <div>
-                <h3>INSCRIPTION</h3>
-                <h4>Je suis:</h4>
+        <main>
+            <div className={styles.mainPage}>
+                <div className={styles.mainPageBoxAbout}>
+                    <p>▷ Depuis 2008, RIDE, agence de location de voitures de luxe propose ses services partout en France (Paris, Monaco, Nice, Cannes, Saint-Tropez, Courchevel, Saint-Moritz...).
+                        Notre expérience est à votre service pour répondre à toutes vos demandes</p>
+                </div>
             </div>
-            <div>
+            <h1 className={styles.mainPageH}>INSCRIPTION</h1>
+            <div className={styles.mainPageForm}>
+                <h4>Je suis:</h4>
                 <RadioComponent id1={"entreprise"} value1={"entreprise"} id2={"particulier"} value2={"particulier"}/>
                 <InputComponent label={'lastName'} htmlFor={'Nom'} type={'text'}/>
                 <InputComponent label={'firstName'} htmlFor={'Prénom'} type={'text'}/>
                 <InputComponent label={'email'} htmlFor={'Email'} type={'email'}/>
                 <InputComponent label={'tel'} htmlFor={'Phone'} type={'tel'}/>
                 <SelectComponent htmlFor={"Nationalité"} options={["france", "allemagne", "suisse"]}/>
-                <ButtonComponent label={"Inscription"} type={"button"} onClick={handleTest}/>
                 <CheckboxComponent htmlFor={"check"}/>
+                <ButtonComponent label={"Inscription"} type={"button"} onClick={handleTest}/>
             </div>
         </main>
 
