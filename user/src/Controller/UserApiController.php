@@ -30,7 +30,7 @@ class UserApiController extends AbstractController
         ));
     }
 
-    #[Route('/checkrole', name: "api_user_checkrole", methods: ["POST"])]
+    #[Route('/checkRole', name: "api_user_checkRole", methods: ["POST"])]
     public function checkRole(Request $request): JsonResponse|Response
     {
         $user = $this->getUser();
