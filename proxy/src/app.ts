@@ -92,6 +92,26 @@ app.get("/api/.user/admin", checkHeaders, (req, res) => {
 
 });
 
+app.post("/api/.user/register", checkHeaders, (req, res) => {
+
+  axios.post("http://nginx/api/register/",  {
+    lastname: req.body.lastname,
+    firstname: req.body.firstname,
+    email: req.body.email,
+    password: req.body.password,
+    country: req.body.country,
+    phonenumber: req.body.phonenumber
+  }, {
+    headers: {
+      "authorization": `Bearer ${req.get("authorization").split(' ')[1]}`,
+      "Content-Type": "application/json"
+    }
+  }).then((onfulfilled) => res.send(onfulfilled.data))
+      .catch((error) => res.send(error.message))
+  ;
+
+});
+
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
 });
