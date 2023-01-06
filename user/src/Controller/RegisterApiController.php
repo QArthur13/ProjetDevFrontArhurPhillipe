@@ -30,4 +30,12 @@ class RegisterApiController extends AbstractController
 
         return $this->json(array("data" => $futurUser, "message" => "Votre compte est en attente de vérification!"));
     }
+
+    #[Route("/valid-user/{id}", name: "api_register_valid_user", methods: ["POST"])]
+    public function validUser(int | string $id, FutureUserRepository $futureUserRepository): JsonResponse
+    {
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
+
+        return $this->json(array("data" => "Test OK!", "id" => $id, "futurUser" => $futureUserRepository->find($id)));
+    }
 }

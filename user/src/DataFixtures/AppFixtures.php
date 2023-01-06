@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\FutureUser;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -20,20 +21,24 @@ class AppFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-        $user = new User();
+        $user = new FutureUser();
         $admin = new User();
 
         $user
-            ->setEmail("arthur.quaranta@youpi.fr")
-            ->setPassword($this->passwordHasher->hashPassword($user, "toto"))
-            ->setRoles(["ROLE_USER"])
+            ->setLastname("atnarauq")
+            ->setFirstname("ruthra")
+            ->setEmail("ruthra@youpi.fr")
+            ->setCountry("France")
+            ->setPhonenumber("+33698988858")
+            ->setValidity(true)
         ;
         $manager->persist($user);
 
         $admin
-            ->setEmail("ruthra@youpi.fr")
+            ->setEmail($user->getEmail())
             ->setPassword($this->passwordHasher->hashPassword($admin, "toto"))
             ->setRoles(["ROLE_ADMIN"])
+            ->setFutureUser($user)
         ;
         $manager->persist($admin);
 

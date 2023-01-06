@@ -31,13 +31,13 @@ app.get("/api", (_, res) => {
 
 app.get("/api/.user", (_, res) => {
   axios.get("http://nginx/hello").then((onfulfilled) => {
-    res.send(onfulfilled.data.message);
+    res.send(onfulfilled.data);
   }).catch((error) => res.send(error.message));
 });
 
 app.post("/api/.user/login", (req, res) => {
 
-  axios.post("http://nginx/api/login_check", {username: req.body.username, password: req.body.password}, {
+  axios.post("http://nginx/api/login_check", {username:req.body.username, password:req.body.password}, {
 
     headers: {
 
@@ -49,7 +49,7 @@ app.post("/api/.user/login", (req, res) => {
 
     res.send(onfulfilled.data);
 
-  }).catch((error) => res.send(error.message));
+  }).catch((error) => res.send(error));
 
 });
 
@@ -105,6 +105,22 @@ app.post("/api/.user/register", checkHeaders, (req, res) => {
     headers: {
       "authorization": `Bearer ${req.get("authorization").split(' ')[1]}`,
       "Content-Type": "application/json"
+    }
+  }).then((onfulfilled) => res.send(onfulfilled.data))
+      .catch((error) => res.send(error.message))
+  ;
+
+});
+
+app.post("/api/.user/register/valid-user", checkHeaders, (req, res) => {
+
+  axios.post("http://nginx/api/register/valid-user/1", {}, {
+
+    headers: {
+
+      "authorization": `Bearer ${req.get("authorization").split(' ')[1]}`,
+      "Content-Type": "application/json"
+
     }
   }).then((onfulfilled) => res.send(onfulfilled.data))
       .catch((error) => res.send(error.message))
