@@ -114,7 +114,7 @@ app.post("/api/.user/register", checkHeaders, (req, res) => {
 
 app.post("/api/.user/register/valid-user", checkHeaders, (req, res) => {
 
-  axios.post("http://nginx/api/register/valid-user/1", {}, {
+  axios.post("http://nginx/api/register/valid-user/"+req.body.id, {}, {
 
     headers: {
 
@@ -127,6 +127,20 @@ app.post("/api/.user/register/valid-user", checkHeaders, (req, res) => {
   ;
 
 });
+
+app.get("/api/.user/users", checkHeaders, (req, res) => {
+
+  axios.get("http://nginx/api/users/", {
+
+    headers: {
+
+      "authorization": `Bearer ${req.get("authorization").split(' ')[1]}`
+
+    }
+
+  }).then((onfulfilled) => res.send(onfulfilled.data)).catch((error) => res.send(error));
+
+})
 
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);

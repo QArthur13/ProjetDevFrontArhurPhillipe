@@ -11,6 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -18,6 +19,13 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[Route("/api/register", name: "app_register_api")]
 class RegisterApiController extends AbstractController
 {
+    private UserPasswordHasherInterface $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
+
     #[Route("/", name: 'api_register_default', methods: ["POST"])]
     public function index(Request $request, SerializerInterface $serializer, ManagerRegistry $managerRegistry): JsonResponse
     {
@@ -32,10 +40,26 @@ class RegisterApiController extends AbstractController
     }
 
     #[Route("/valid-user/{id}", name: "api_register_valid_user", methods: ["POST"])]
-    public function validUser(int | string $id, FutureUserRepository $futureUserRepository): JsonResponse
+    public function validUser(int | string $id, FutureUserRepository $futureUserRepository, ManagerRegistry $managerRegistry): JsonResponse
     {
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
-        return $this->json(array("data" => "Test OK!", "id" => $id, "futurUser" => $futureUserRepository->find($id)));
+        $entityManager = $managerRegistry->getManager();
+
+        $futureUser = $futureUserRepository->find($id);
+        $futureUser->setValidity(true);
+        $entityManager->flush($futureUser);
+
+        $user = new User();
+        $user
+            ->setEmail($futureUser->getEmail())
+            ->setRoles(array("ROLE_USER"))
+            ->setPassword($this->passwordHasher->hashPassword($user, "toto"))
+            ->setFutureUser($futureUser)
+        ;
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->json(array("data" => $user, "message" => "Nouvel utilisateur créer!"));
     }
 }
