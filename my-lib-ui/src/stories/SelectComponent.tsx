@@ -1,28 +1,40 @@
-import React, {useState} from "react";
+import React from "react";
 
 interface SelectComponentProps {
 
+  label: string,
   htmlFor: string,
-  options: string[]
+  value: any,
+  options: string[],
+  onChange?: (data: any) => any
 
 }
 
 const SelectComponent: React.FC<SelectComponentProps> = (props) => {
 
-  const { htmlFor, options } = props;
-  const [value, setValue] = useState<string>("");
+  const { label, htmlFor, value, options, onChange } = props;
+  //const [value, setValue] = useState<string>("");
+  const handleChange = (event: any) => {
+
+    /*setValue(event.target.value)
+    console.log(value);*/
+
+    console.log("Test dans le composant select!");
+
+    if (onChange) {
+
+      onChange(event.target.value);
+
+    }
+
+  };
 
   return (
 
     <div>
-      <label htmlFor={htmlFor}>Nationalité:</label>
-      <select name="country" id={htmlFor} value={value} onChange={(event) => {
-
-        setValue(event.target.value)
-        console.log(event.target.value)
-
-      }}>
-        <option value="">Sélectionner une nationalité</option>
+      <label htmlFor={htmlFor}>{label}:</label>
+      <select name={htmlFor} id={htmlFor} value={value} onChange={handleChange}>
+        <option value="">Choisir une nationalité</option>
         {options.map((value, index) => (
 
           <option key={index} value={value}>{value}</option>

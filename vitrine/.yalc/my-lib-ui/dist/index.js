@@ -4,23 +4,23 @@ var React = require('react');
 var React__default = _interopDefault(React);
 
 var RadioComponent = function RadioComponent(props) {
-  var _useState = React.useState(""),
-    value = _useState[0],
-    setValue = _useState[1];
   var id1 = props.id1,
     value1 = props.value1,
     id2 = props.id2,
-    value2 = props.value2;
+    value2 = props.value2,
+    onChange = props.onChange;
+  var handleChange = function handleChange(event) {
+    console.log("Test du radio!");
+    if (onChange) {
+      onChange(event.target.value);
+    }
+  };
   return React__default.createElement("div", null, React__default.createElement("input", {
     type: "radio",
     id: id1,
     name: "choice",
-    checked: value === value1,
     value: value1,
-    onChange: function onChange(event) {
-      console.log(event.target.value);
-      setValue(event.target.value);
-    }
+    onChange: handleChange
   }), React__default.createElement("label", {
     htmlFor: value1
   }, "une ", value1), React__default.createElement("input", {
@@ -28,11 +28,7 @@ var RadioComponent = function RadioComponent(props) {
     id: id2,
     name: "choice",
     value: value2,
-    checked: value === value2,
-    onChange: function onChange(event) {
-      console.log(event.target.value);
-      setValue(event.target.value);
-    }
+    onChange: handleChange
   }), React__default.createElement("label", {
     htmlFor: value2
   }, "un ", value2));
@@ -41,16 +37,16 @@ var RadioComponent = function RadioComponent(props) {
 var InputComponent = function InputComponent(props) {
   var label = props.label,
     htmlFor = props.htmlFor,
-    type = props.type;
-  var _useState = React.useState(""),
-    value = _useState[0],
-    setValue = _useState[1];
-  var handleChange = function handleChange(e) {
-    return setValue(e.target.value);
+    type = props.type,
+    value = props.value,
+    onChange = props.onChange;
+  var handleChange = function handleChange(event) {
+    console.log("Test du input!");
+    if (onChange) {
+      onChange(event.target.value);
+    }
   };
-  return React__default.createElement("div", {
-    className: "test"
-  }, React__default.createElement("label", {
+  return React__default.createElement("div", null, React__default.createElement("label", {
     htmlFor: htmlFor
   }, label, ":"), React__default.createElement("input", {
     type: type,
@@ -62,24 +58,27 @@ var InputComponent = function InputComponent(props) {
 };
 
 var SelectComponent = function SelectComponent(props) {
-  var htmlFor = props.htmlFor,
-    options = props.options;
-  var _useState = React.useState(""),
-    value = _useState[0],
-    setValue = _useState[1];
+  var label = props.label,
+    htmlFor = props.htmlFor,
+    value = props.value,
+    options = props.options,
+    onChange = props.onChange;
+  var handleChange = function handleChange(event) {
+    console.log("Test dans le composant select!");
+    if (onChange) {
+      onChange(event.target.value);
+    }
+  };
   return React__default.createElement("div", null, React__default.createElement("label", {
     htmlFor: htmlFor
-  }, "Nationalit\xE9:"), React__default.createElement("select", {
-    name: "country",
+  }, label, ":"), React__default.createElement("select", {
+    name: htmlFor,
     id: htmlFor,
     value: value,
-    onChange: function onChange(event) {
-      setValue(event.target.value);
-      console.log(event.target.value);
-    }
+    onChange: handleChange
   }, React__default.createElement("option", {
     value: ""
-  }, "S\xE9lectionner une nationalit\xE9"), options.map(function (value, index) {
+  }, "Choisir une nationalit\xE9"), options.map(function (value, index) {
     return React__default.createElement("option", {
       key: index,
       value: value
@@ -92,14 +91,16 @@ var CheckboxComponent = function CheckboxComponent(props) {
   var _useState = React.useState(false),
     value = _useState[0],
     setValue = _useState[1];
+  var handleChange = function handleChange(event) {
+    setValue(event.target.checked);
+    console.log(value);
+  };
   return React__default.createElement("div", null, React__default.createElement("input", {
     type: "checkbox",
     id: htmlFor,
     name: htmlFor,
     checked: value,
-    onChange: function onChange(event) {
-      return setValue(event.target.checked);
-    }
+    onChange: handleChange
   }), React__default.createElement("label", {
     htmlFor: htmlFor
   }, "J\u2019atteste que je poss\xE8de un permis de conduire valide."));
@@ -110,12 +111,17 @@ var ButtonComponent = function ButtonComponent(props) {
     type = props.type,
     onClick = props.onClick;
   var handleTest = function handleTest() {
+    console.log("Le callback va bientôt arriver!");
+    console.log({
+      "label": label,
+      "type": type,
+      "onClick": onClick
+    });
     if (onClick) {
       onClick();
     }
   };
   return React__default.createElement("button", {
-    className: "my-button",
     type: type,
     onClick: handleTest
   }, label);

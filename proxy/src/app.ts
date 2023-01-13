@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 
 const app = express();
 const port = 8000;
+const cors = require("cors");
 
 function checkHeaders(req, res, next) {
 
@@ -25,8 +26,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+app.use(cors());
+
 app.get("/api", (_, res) => {
-  res.send("Hello API");
+  res.send({message: "Hello API"});
 });
 
 app.get("/api/.user", (_, res) => {
@@ -92,22 +95,35 @@ app.get("/api/.user/admin", checkHeaders, (req, res) => {
 
 });
 
-app.post("/api/.user/register", checkHeaders, (req, res) => {
+app.get("/api/.user/future-users", checkHeaders, (req, res) => {
+
+  axios.get("http://nginx/api/future-users/", { headers: {
+
+      "authorization": `Bearer ${req.get("authorization").split(' ')[1]}`
+
+    }})
+      .then((onfulfilled) => res.send(onfulfilled.data))
+      .catch((error) => res.send(error.message))
+  ;
+
+});
+
+app.post("/api/.user/register", (req, res) => {
+
+  console.log(req.body);
 
   axios.post("http://nginx/api/register/",  {
     lastname: req.body.lastname,
     firstname: req.body.firstname,
     email: req.body.email,
-    password: req.body.password,
     country: req.body.country,
     phonenumber: req.body.phonenumber
   }, {
     headers: {
-      "authorization": `Bearer ${req.get("authorization").split(' ')[1]}`,
       "Content-Type": "application/json"
     }
   }).then((onfulfilled) => res.send(onfulfilled.data))
-      .catch((error) => res.send(error.message))
+      .catch((error) => res.send({error: error, data: req.body}))
   ;
 
 });

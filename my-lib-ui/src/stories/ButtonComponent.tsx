@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/index.css";
 
 interface ButtonComponentProps {
 
@@ -15,6 +14,9 @@ const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
 
   const handleTest = () => {
 
+    console.log("Le callback va bientôt arriver!");
+    console.log({"label": label, "type": type, "onClick": onClick});
+
     if (onClick) {
 
       onClick();
@@ -25,7 +27,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
 
   return (
 
-    <button className={"the-button"} type={type} onClick={handleTest}>{label}</button>
+    <button type={type} onClick={handleTest}>{label}</button>
 
   );
 

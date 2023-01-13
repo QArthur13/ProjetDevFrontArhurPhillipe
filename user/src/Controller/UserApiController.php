@@ -20,10 +20,10 @@ class UserApiController extends AbstractController
 
         return new JsonResponse(array(
 
-            "Utilisateur" => array(
+            "user" => array(
 
-                "Email" => $user->getUserIdentifier(),
-                "Role" => $user->getRoles()[0]
+                "email" => $user->getUserIdentifier(),
+                "role" => $user->getRoles()[0]
 
             )
 
