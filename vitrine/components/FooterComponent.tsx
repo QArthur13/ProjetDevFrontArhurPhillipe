@@ -5,7 +5,7 @@ const FooterComponent: React.FC = () => {
 
     return (
 
-        <footer className={styles.mainFooter}>
+        <footer>
             <p>Contact</p>
             <p>Conditions générales pdf</p>
             <p>RIDE 2022 - tout droits réservés</p>

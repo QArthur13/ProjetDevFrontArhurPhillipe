@@ -39,13 +39,12 @@ const LoginComponent: React.FC = () => {
         fetchData("http://localhost:8000/api/.user/login", data)
             .then((response) => {
 
-                console.log("J'ai le token, je vais l'enregistrer dans le localStorage!");
-
-                console.log(response.token);
+                /*console.log("J'ai le token, je vais l'enregistrer dans le localStorage!");
+                console.log(response.token);*/
                 localStorage.setItem("token", response.token);
 
-                console.log("Je l'ai enregistrer, regarde dans le localStorage!");
-                console.log(localStorage.getItem("token"));
+                /*console.log("Je l'ai enregistrer, regarde dans le localStorage!");
+                console.log(localStorage.getItem("token"));*/
 
                 router.push("/admin");
 
@@ -64,7 +63,7 @@ const LoginComponent: React.FC = () => {
 
         } else {
 
-            console.log("Non il n'y a pas de token!");
+            console.log("Non pas de token!");
 
         }
 
