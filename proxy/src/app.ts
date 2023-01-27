@@ -196,16 +196,16 @@ app.post("/api/.car/add-car", checkHeaders, (req, res) => {
     price: [req.body.price],
     image: [req.body.image]
 
-  }, {
+    }, {
 
-    headers: {
+      headers: {
 
       "authorization": `Bearer ${req.get("authorization").split(' ')[1]}`,
       "Content-Type": "application/json"
 
-    }
+      }
 
-  }).then((onfulfilled) => res.send(onfulfilled.data))
+    }).then((onfulfilled) => res.send(onfulfilled.data))
       .catch((error) => res.send(error));
 
 });

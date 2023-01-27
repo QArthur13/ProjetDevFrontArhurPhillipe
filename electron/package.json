@@ -1,0 +1,17 @@
+  {
+  "name": "electron",
+  "version": "1.0.0",
+  "description": "Pour le projet",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arthur-Philippe",
+  "license": "ISC",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^22.1.0"
+  }
+}
