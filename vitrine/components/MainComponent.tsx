@@ -91,12 +91,6 @@ const MainComponent: React.FC = () => {
                     <InputComponent label={'Mail'} htmlFor={'email'} type={'email'} value={email} onChange={handleChangeEmail} />
                     <InputComponent label={'Téléphone'} htmlFor={'phonenumber'} type={'text'} value={phoneNumber} onChange={handleChangePhoneNumber} />
                     <SelectComponent htmlFor={"country"} label={"Nationalité"} value={country} options={countries} onChange={handleChangeCountry} />
-                    {/*<RadioComponent id1={"entreprise"} value1={"entreprise"} id2={"particulier"} value2={"particulier"}/>
-                    <InputComponent label={'firstName'} htmlFor={'Prénom'} type={'text'}/>
-                    <InputComponent label={'email'} htmlFor={'Email'} type={'email'}/>
-                    <InputComponent label={'tel'} htmlFor={'Phone'} type={'tel'}/>
-                    <SelectComponent htmlFor={"Nationalité"} options={["france", "allemagne", "suisse"]}/>
-                    <CheckboxComponent htmlFor={"check"}/>*/}
                     <ButtonComponent label={"Inscription"} type={"submit"}/>
                 </form>
             </div>

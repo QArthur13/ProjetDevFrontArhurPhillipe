@@ -1,6 +1,6 @@
 .mainHeader {
 
-    position: absolute;
+    /*position: absolute;*/
     width: 1440px;
     height: 72px;
     left: 0;
@@ -61,7 +61,7 @@
 
 .mainPage {
 
-    position: absolute;
+    /*position: absolute;*/
     width: 1440px;
     height: 424px;
     left: 0;
@@ -126,7 +126,7 @@
 
 .mainFooter {
 
-    position: absolute;
+    /*position: absolute;*/
     width: 1440px;
     height: 144px;
     left: 0;
