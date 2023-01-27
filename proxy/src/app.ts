@@ -156,7 +156,67 @@ app.get("/api/.user/users", checkHeaders, (req, res) => {
 
   }).then((onfulfilled) => res.send(onfulfilled.data)).catch((error) => res.send(error));
 
-})
+});
+
+app.get("/api/.car", checkHeaders, (req, res) => {
+
+  axios.get("http://car:5000", {
+
+    headers: {
+
+      "authorization": `Bearer ${req.get("authorization").split(' ')[1]}`
+
+    }
+
+  }).then((onfulfilled) => res.send(onfulfilled.data))
+      .catch((error) => res.send(error));
+
+});
+
+app.get("/api/.car/car-get", checkHeaders, (req, res) => {
+
+  axios.get("http://car:5000/car", {
+
+    headers: {
+
+      "authorization": `Bearer ${req.get("authorization").split(' ')[1]}`
+
+    }
+
+  }).then((onfulfilled) => res.send(onfulfilled.data))
+      .catch((error) => res.send(error));
+
+});
+
+app.post("/api/.car/add-car", checkHeaders, (req, res) => {
+
+  axios.post("http://car:5000/add", {
+
+    name: [req.body.name],
+    price: [req.body.price],
+    image: [req.body.image]
+
+  }, {
+
+    headers: {
+
+      "authorization": `Bearer ${req.get("authorization").split(' ')[1]}`,
+      "Content-Type": "application/json"
+
+    }
+
+  }).then((onfulfilled) => res.send(onfulfilled.data))
+      .catch((error) => res.send(error));
+
+});
+
+app.delete("/api/.car/car-del", checkHeaders, (req, res) => {
+
+  axios.post("http://car:5000/car/"+req.body.id+"/delete")
+      .then((onfulfilled) => res.send(onfulfilled.data))
+      .catch((error) => res.send(error));
+
+});
 
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
