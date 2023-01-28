@@ -1,36 +1,33 @@
 .mainFooter {
 
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF;
     background-color: black;
-    color: white;
-    height: 144px;
-    width: 1536px;
-    top: 577px;
+    margin-top: 330px;
 
 }
 
 .mainFooter p {
 
-    display: flex;
-    flex-direction: row;
-    margin-left: 5.14%;
-    font-family: 'Roboto', serif;
+    align-self: flex-start;
+    margin-left: 74.04px;
+    font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
     text-decoration-line: underline;
-
 }
 
 .mainFooter p:last-child {
 
-    justify-content: center;
-    font-family: 'Abel Pro', serif;
+    align-self: center;
+    font-family: "Abel Pro", sans-serif;
     font-style: normal;
-    font-weight: 400;
     font-size: 16px;
     line-height: 16px;
-    text-decoration-line: none;
+    text-decoration-line: underline;
 
 }

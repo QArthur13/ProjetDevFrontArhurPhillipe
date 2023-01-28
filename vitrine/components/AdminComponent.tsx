@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
+import styles from "../styles/Admin.module.css"
+import {ButtonComponent} from "my-lib-ui";
+import {router} from "next/client";
+import {useRouter} from "next/router";
 
 const AdminComponent: React.FC = () => {
 
     const [loader, setLoader] = useState<boolean>(false);
     const [futureUser, setFutureUser] = useState<any>([]);
+    const [cars, setCars] = useState<any>([]);
+    const [changeTable, setChangeTable] = useState<boolean>(true);
+
+    const router = useRouter();
 
     const fetchGet = async (url: string, token: any) => {
         
@@ -34,32 +42,63 @@ const AdminComponent: React.FC = () => {
 
     }
 
+    const handleChangeTable = () => setChangeTable(!changeTable);
+
     useEffect(() => {
 
         fetchGet("http://localhost:8000/api/.user/user", localStorage.getItem("token"))
             .then((response) => {
                 
-                //console.log(response);
+                console.log(response);
 
-                if (response.user.role == "ROLE_ADMIN") {
+                if (response.message) {
 
-                    console.log("Bienvenue admin!");
-
-                    fetchGet("http://localhost:8000/api/.user/future-users", localStorage.getItem("token"))
-                        .then((response) => {
-
-                            console.log(response.data);
-                            setFutureUser(response.data);
-                            setLoader(true);
-                            //console.log(futureUser);
-
-                        })
-                        .catch((error) => console.log(error))
-                    ;
+                    console.log("Redirige vers la page de co!");
+                    localStorage.removeItem("token");
+                    router.push("/login");
 
                 } else {
 
-                    console.log("Vous n'êtes pas un admin!");
+                    if (response.user.role == "ROLE_ADMIN") {
+
+                        console.log("Bienvenue admin!");
+
+                        fetchGet("http://localhost:8000/api/.user/future-users", localStorage.getItem("token"))
+                            .then((response) => {
+
+                                console.log(response.data);
+                                setFutureUser(response.data);
+                                setLoader(true);
+                                //console.log(futureUser);
+
+                            })
+                            .catch((error) => {
+
+                                //console.log(error);
+                                localStorage.removeItem("token");
+                                router.push("/login");
+
+                            })
+                        ;
+
+                        fetchGet("http://localhost:8000/api/.car/car-get", localStorage.getItem("token"))
+                            .then((response) => {
+
+                                console.log(response);
+                                setCars(response);
+                                //setCars([{"id": 1, "name": "Ford", "price": 10000}]);
+                                setLoader(true);
+                                //console.log(futureUser);
+
+                            })
+                            .catch((error) => console.log(error))
+                        ;
+
+                    } else {
+
+                        console.log("Vous n'êtes pas un admin!");
+
+                    }
 
                 }
             
@@ -70,49 +109,131 @@ const AdminComponent: React.FC = () => {
     }, []);
 
     if (loader) {
+
+        if (changeTable) {
+
+            return (
+
+                <div>
+                    <h1 className={styles.titlePage}>Gestion Back-Office</h1>
+                    <div className={styles.mainPage}>
+                        <ButtonComponent label={"Voitures"} type={"button"} onClick={handleChangeTable}/>
+                        <table className={styles.tableFutureUsers}>
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Email</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Téléphone</th>
+                                <th>Nationalité</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {futureUser.map((value: any) => (
+
+                                <tr key={value.id}>
+                                    <th>{value.id}</th>
+                                    <td>{value.email}</td>
+                                    <td>{value.lastname}</td>
+                                    <td>{value.firstname}</td>
+                                    <td>{value.phonenumber}</td>
+                                    <td>{value.country}</td>
+                                    {value.validity === true ? <td>Validé</td> : <td>En attente</td>}
+                                    {value.validity === true ? <td><ButtonComponent classes={styles.theButton} label={"Editer"} type={"button"}/></td> : <td><ButtonComponent label={"Valider"} type={"button"} onClick={() => handleValidButton(value.id)}/></td>}
+                                </tr>
+
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            );
+
+        } else {
+
+            return (
+
+                <div>
+                    <h1 className={styles.titlePage}>Gestion Back-Office</h1>
+                    <ButtonComponent label={"Utilisateurs"} type={"button"} onClick={handleChangeTable}/>
+                    <div className={styles.mainPage}>
+                        <table className={styles.tableFutureUsers}>
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Prix</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {cars.map((value: any) => (
+
+                                <tr key={value.id}>
+                                    <th>{value.id}</th>
+                                    <td>{value.name}</td>
+                                    <td>{value.price}</td>
+                                    {value.validity === true ? <td><ButtonComponent classes={styles.theButton} label={"Editer"} type={"button"}/></td> : <td><ButtonComponent label={"Valider"} type={"button"} onClick={() => handleValidButton(value.id)}/></td>}
+                                </tr>
+
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            );
+
+        }
         
-        return (
+        /*return (
 
             <div>
-                <h1>Gestion Back-Office</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Email</th>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Téléphone</th>
-                            <th>Nationalité</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {futureUser.map((value: any) => (
+                <h1 className={styles.titlePage}>Gestion Back-Office</h1>
+                <div className={styles.mainPage}>
+                    <table className={styles.tableFutureUsers}>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Email</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Téléphone</th>
+                                <th>Nationalité</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {futureUser.map((value: any) => (
 
-                        <tr key={value.id}>
-                            <th>{value.id}</th>
-                            <td>{value.email}</td>
-                            <td>{value.lastname}</td>
-                            <td>{value.firstname}</td>
-                            <td>{value.phonenumber}</td>
-                            <td>{value.country}</td>
-                            {value.validity === true ? <td>Editer</td> : <td><button onClick={() => handleValidButton(value.id)}>Valdier</button></td>}
-                        </tr>
+                            <tr key={value.id}>
+                                <th>{value.id}</th>
+                                <td>{value.email}</td>
+                                <td>{value.lastname}</td>
+                                <td>{value.firstname}</td>
+                                <td>{value.phonenumber}</td>
+                                <td>{value.country}</td>
+                                {value.validity === true ? <td>Validé</td> : <td>En attente</td>}
+                                {value.validity === true ? <td><ButtonComponent classes={styles.theButton} label={"Editer"} type={"button"}/></td> : <td><ButtonComponent label={"Valider"} type={"button"} onClick={() => handleValidButton(value.id)}/></td>}
+                            </tr>
 
-                    ))}
-                    </tbody>
-                </table>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-        );
+        );*/
 
     }
 
     return (
 
         <div>
-            <h1>Chargement du fetch</h1>
+            <h1 style={{textAlign: "center"}}>Chargement du fetch</h1>
         </div>
 
     );

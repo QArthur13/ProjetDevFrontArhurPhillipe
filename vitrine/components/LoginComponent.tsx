@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {ButtonComponent, InputComponent} from "my-lib-ui";
-import styles from "../styles/Index.module.css"
+import styles from "../styles/Login.module.css"
 
 const LoginComponent: React.FC = () => {
 
@@ -71,14 +71,14 @@ const LoginComponent: React.FC = () => {
 
     return (
 
-        <div>
-            <a onClick={() => router.push('/')}>← retour</a>
-            <div>
+        <div className={styles.mainLogin}>
+            <a className={styles.home} onClick={() => router.push('/')}><span style={{color: "#C00000"}}>←</span> retour</a>
+            <div className={styles.boxLogin}>
                 <h3>CONNEXION</h3>
                 <form action="" onSubmit={handleSubmit}>
                     <InputComponent label={"Identifiant"} htmlFor={"username"} type={"text"} value={username} onChange={handleChangeUsername} />
                     <InputComponent label={"Mot de passe"} htmlFor={"password"} type={"password"} value={password} onChange={handleChangePassword} />
-                    <ButtonComponent label={"Connexion"} type={'submit'}/>
+                    <ButtonComponent classes={styles.theButton} label={"Connexion"} type={'submit'}/>
                 </form>
             </div>
         </div>

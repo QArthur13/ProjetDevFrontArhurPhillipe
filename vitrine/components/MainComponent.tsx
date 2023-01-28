@@ -1,6 +1,7 @@
 import React, {FormEvent, useState} from "react";
 import {ButtonComponent, CheckboxComponent, InputComponent, RadioComponent, SelectComponent} from "my-lib-ui";
-import styles from "../styles/Index.module.css";
+import Image from "next/image";
+import styles from "../styles/Main.module.css";
 
 const MainComponent: React.FC = () => {
 
@@ -76,24 +77,23 @@ const MainComponent: React.FC = () => {
     return (
 
         <main>
-            <div className={styles.mainPage}>
-                <div className={styles.mainPageBoxAbout}>
-                    <p>▷ Depuis 2008, RIDE, agence de location de voitures de luxe propose ses services partout en France (Paris, Monaco, Nice, Cannes, Saint-Tropez, Courchevel, Saint-Moritz...).
-                        Notre expérience est à votre service pour répondre à toutes vos demandes</p>
-                </div>
-            </div>
-            <h1 className={styles.mainPageH}>INSCRIPTION</h1>
-            <div className={styles.mainPageForm}>
+            <Image src={"/image/image 2.jpg"} height={424} width={1903} alt={"Voitures"}></Image>
+            <p className={styles.information}><span style={{color: "#C00000"}}>▷</span> Depuis 2008, RIDE, agence de location de voitures de luxe propose ses services partout en France (Paris, Monaco, Nice, Cannes, Saint-Tropez, Courchevel, Saint-Moritz...).
+                Notre expérience est à votre service pour répondre à toutes vos demandes</p>
+            <h1 className={styles.formTitle}>inscription</h1>
+            <form className={styles.formRegister} action="" onSubmit={handleSubmit}>
                 <h4>Je suis:</h4>
-                <form action="" onSubmit={handleSubmit}>
+                <div className={styles.formFlex}>
                     <InputComponent label={'Nom'} htmlFor={'lastname'} type={'text'} value={lastname} onChange={handleChangeLastName}/>
                     <InputComponent label={'Prenom'} htmlFor={'firstname'} type={'text'} value={firstname} onChange={handleChangeFirstName} />
+                </div>
+                <div className={styles.formFlex} style={{marginBottom: 10}}>
                     <InputComponent label={'Mail'} htmlFor={'email'} type={'email'} value={email} onChange={handleChangeEmail} />
                     <InputComponent label={'Téléphone'} htmlFor={'phonenumber'} type={'text'} value={phoneNumber} onChange={handleChangePhoneNumber} />
-                    <SelectComponent htmlFor={"country"} label={"Nationalité"} value={country} options={countries} onChange={handleChangeCountry} />
-                    <ButtonComponent label={"Inscription"} type={"submit"}/>
-                </form>
-            </div>
+                </div>
+                <SelectComponent htmlFor={"country"} label={"Nationalité"} value={country} options={countries} onChange={handleChangeCountry} />
+                <ButtonComponent classes={styles.theButton} label={"Demander mon inscription"} type={"submit"}/>
+            </form>
         </main>
 
     );

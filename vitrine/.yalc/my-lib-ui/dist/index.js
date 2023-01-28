@@ -109,6 +109,8 @@ var CheckboxComponent = function CheckboxComponent(props) {
 var ButtonComponent = function ButtonComponent(props) {
   var label = props.label,
     type = props.type,
+    classes = props.classes,
+    styles = props.styles,
     onClick = props.onClick;
   var handleTest = function handleTest() {
     console.log("Le callback va bientôt arriver!");
@@ -122,6 +124,8 @@ var ButtonComponent = function ButtonComponent(props) {
     }
   };
   return React__default.createElement("button", {
+    className: classes,
+    style: styles,
     type: type,
     onClick: handleTest
   }, label);
