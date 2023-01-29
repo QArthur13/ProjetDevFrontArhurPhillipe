@@ -1,6 +1,7 @@
 import React from "react";
 import ButtonComponent from "./ButtonComponent";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
+import "../styles/button.css";
 
 export default {
 
@@ -27,6 +28,7 @@ FirstButton.args = {
 
   label: 'Un test',
   type: 'button',
+  classes: "test-button",
   onClick: handleTest2
 
 };

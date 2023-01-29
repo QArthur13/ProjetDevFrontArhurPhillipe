@@ -64,7 +64,7 @@ app.get("/api/.user/user", checkHeaders, (req, res) => {
 
     }})
       .then((onfulfilled) => res.send(onfulfilled.data))
-      .catch((error) => res.send(error.message))
+      .catch((error) => res.send(error))
   ;
 
 });
@@ -210,7 +210,7 @@ app.post("/api/.car/add-car", checkHeaders, (req, res) => {
 
 });
 
-app.delete("/api/.car/car-del", checkHeaders, (req, res) => {
+app.post("/api/.car/car-del", checkHeaders, (req, res) => {
 
   axios.post("http://car:5000/car/"+req.body.id+"/delete")
       .then((onfulfilled) => res.send(onfulfilled.data))

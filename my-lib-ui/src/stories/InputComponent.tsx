@@ -4,8 +4,8 @@ interface InputComponentProps {
 
   label: string,
   htmlFor: string
-  type: "text" | "email" | "password",
-  value: string,
+  type: "text" | "email" | "password" | "number",
+  value: string | number,
   onChange?: (data: any) => any
 
 }

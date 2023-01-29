@@ -4,13 +4,15 @@ interface ButtonComponentProps {
 
   label: string,
   type: 'button' | 'submit',
+  classes?: any,
+  styles?: any
   onClick?: () => void
 
 }
 
 const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
 
-  const { label, type, onClick } = props;
+  const { label, type, classes, styles, onClick } = props;
 
   const handleTest = () => {
 
@@ -27,7 +29,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
 
   return (
 
-    <button type={type} onClick={handleTest}>{label}</button>
+    <button className={classes} style={styles} type={type} onClick={handleTest}>{label}</button>
 
   );
 

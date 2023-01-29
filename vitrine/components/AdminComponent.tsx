@@ -3,6 +3,8 @@ import styles from "../styles/Admin.module.css"
 import {ButtonComponent} from "my-lib-ui";
 import {router} from "next/client";
 import {useRouter} from "next/router";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 const AdminComponent: React.FC = () => {
 
@@ -37,6 +39,18 @@ const AdminComponent: React.FC = () => {
 
         fetchData("http://localhost:8000/api/.user/register/valid-user", data, localStorage.getItem("token"))
             .then((response) => console.log(response))
+            .catch((error) => console.log(error))
+        ;
+
+    }
+
+    const handleDeleteCarButton = (id: any) => {
+
+        const data = {id: id};
+        console.log(data);
+
+        fetchData("http://localhost:8000/api/.car/car-del", data, localStorage.getItem("token"))
+            .then((response => console.log(response)))
             .catch((error) => console.log(error))
         ;
 
@@ -117,7 +131,7 @@ const AdminComponent: React.FC = () => {
                 <div>
                     <h1 className={styles.titlePage}>Gestion Back-Office</h1>
                     <div className={styles.mainPage}>
-                        <ButtonComponent label={"Voitures"} type={"button"} onClick={handleChangeTable}/>
+                        <ButtonComponent classes={styles.theButton} label={"Voitures"} type={"button"} onClick={handleChangeTable}/>
                         <table className={styles.tableFutureUsers}>
                             <thead>
                             <tr>
@@ -158,7 +172,8 @@ const AdminComponent: React.FC = () => {
 
                 <div>
                     <h1 className={styles.titlePage}>Gestion Back-Office</h1>
-                    <ButtonComponent label={"Utilisateurs"} type={"button"} onClick={handleChangeTable}/>
+                    <ButtonComponent classes={styles.theButton} label={"Utilisateurs"} type={"button"} onClick={handleChangeTable}/>
+                    <ButtonComponent classes={styles.theButton} label={"Ajouter une voiture"} type={"button"} onClick={() => router.push("/createCar")}/>
                     <div className={styles.mainPage}>
                         <table className={styles.tableFutureUsers}>
                             <thead>
@@ -176,7 +191,7 @@ const AdminComponent: React.FC = () => {
                                     <th>{value.id}</th>
                                     <td>{value.name}</td>
                                     <td>{value.price}</td>
-                                    {value.validity === true ? <td><ButtonComponent classes={styles.theButton} label={"Editer"} type={"button"}/></td> : <td><ButtonComponent label={"Valider"} type={"button"} onClick={() => handleValidButton(value.id)}/></td>}
+                                    <td><ButtonComponent classes={styles.theButton} label={"Supprimer la voiture N°"+value.id} type={"button"} onClick={() => handleDeleteCarButton(value.id)}/></td>
                                 </tr>
 
                             ))}
