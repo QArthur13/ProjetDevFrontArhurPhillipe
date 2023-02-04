@@ -188,6 +188,21 @@ app.get("/api/.car/car-get", checkHeaders, (req, res) => {
 
 });
 
+app.get("/api/.car/car:id", checkHeaders, (req, res) => {
+
+  axios.get("http://car:5000/car/"+req.params.id, {
+
+    headers: {
+
+      "authorization": `Bearer ${req.get("authorization").split(' ')[1]}`
+
+    }
+
+  }).then((onfulfilled) => res.send(onfulfilled.data))
+      .catch((error) => res.send(error));
+
+});
+
 app.post("/api/.car/add-car", checkHeaders, (req, res) => {
 
   axios.post("http://car:5000/add", {

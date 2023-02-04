@@ -7,18 +7,31 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:admin@db:3306/lesson'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
+
 @app.before_first_request
 def create_table():
     db.create_all()
+
 
 @app.route("/", methods=["GET"])
 def hello():
     return jsonify({"Hello": "World"})
 
+
 @app.route("/car", methods=["GET"])
 def get_all_car():
     car = CarModel.query.all()
     return jsonify([i.serialize for i in car])
+
+
+@app.route("/car/<int:id>", methods=["GET"])
+def get_one_car(id):
+    car = CarModel.query.filter_by(id=id).first()
+
+    if car:
+        return jsonify([{"id": car.id, "name": car.name, "price": car.price, "image": car.image}])
+    return f"L'id de la voiture ={id}, est inconnue!"
+
 
 @app.route("/add", methods=["POST"])
 def add():
@@ -26,11 +39,12 @@ def add():
     name = data["name"]
     price = data["price"]
     image = data["image"]
-    car = CarModel(name = name, price = price, image = image)
+    car = CarModel(name=name, price=price, image=image)
     db.session.add(car)
     db.session.commit()
     return jsonify({"message": "Ajout de la voiture", "data": data["name"] + data["price"] + data["image"]})
-    #return jsonify(data["a"] + data["b"] + data["c"])
+    # return jsonify(data["a"] + data["b"] + data["c"])
+
 
 @app.route("/car/<int:id>/delete", methods=["POST"])
 def delete(id):
