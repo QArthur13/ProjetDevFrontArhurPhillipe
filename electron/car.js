@@ -20,11 +20,10 @@ getCar()
         console.log(response);
 
         let detail = document.getElementById("car-detail");
-        detail.innerHTML += `<ul data-id="${response[0].id}">
-                                <li>${response[0].name}</li>
-                                <li><img src="${response[0].image}" alt="${response[0].name}"></li>
-                                <li>${response[0].price}</li>
-                            </ul>`;
+        detail.innerHTML += `<div data-id="${response[0].id}">
+                                <p>${response[0].name}</p>
+                                <img src="${response[0].image}" alt="${response[0].name}">
+                            </div>`;
 
     })
     .catch((error) => console.log(error));
