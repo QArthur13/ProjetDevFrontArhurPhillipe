@@ -1,0 +1,61 @@
+body {
+
+    margin: 0;
+
+}
+
+.back-to-lists {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin-left: 23px;
+    margin-top: 46px;
+
+}
+
+.back-to-lists a {
+
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000;
+
+    margin-left: 16px;
+
+}
+
+h1 {
+
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 42px;
+    letter-spacing: 0.04em;
+
+    margin: 46px 26px 1px 22px;
+
+}
+
+p {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+
+    margin: 1px 41px 0 23px;
+}
+
+#car-image {
+
+    margin-top: 40px;
+    margin-right: 8px;
+    margin-left: 8px;
+
+}

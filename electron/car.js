@@ -19,11 +19,11 @@ getCar()
 
         console.log(response);
 
-        let detail = document.getElementById("car-detail");
-        detail.innerHTML += `<div data-id="${response[0].id}">
-                                <p>${response[0].name}</p>
-                                <img src="${response[0].image}" alt="${response[0].name}">
-                            </div>`;
+        document.querySelector("h1").innerHTML = response[0].name.toUpperCase();
+
+        let image = document.getElementById("car-image");
+        image.src = response[0].image;
+        image.alt = `Voiture N°${response[0].id}`;
 
     })
     .catch((error) => console.log(error));

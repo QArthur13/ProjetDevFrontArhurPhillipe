@@ -30,10 +30,10 @@ getCars("http://localhost:8000/api/.car/car-get", localStorage.getItem("token"))
             document.getElementById("cars-lists").innerHTML +=
 
                 `<div class="vignette-auto" data-id="${value.id}">
-                    <img src="${value.image}" alt="${value.id}" width="358" height="161">
+                    <img src="${value.image}" alt="${value.id}" width="358" height="161" style="margin-left: 8px">
                     <div class="frame-2">
                         <p>${value.name}</p>
-                        <p>${value.price}</p>
+                        <p>à partir de <span style="color: #C00000">${value.price} €</span></p>
                         <button onclick="carDetail(${value.id})">Info</button>
                     </div>
                 </div>`
